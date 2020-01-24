@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "percytest": "percy exec -- cypress run"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "webpack": "^4.41.5"
   },
   "devDependencies": {
+    "@percy/cypress": "^2.2.0",
     "start-server-and-test": "^1.10.7"
   }
 }
