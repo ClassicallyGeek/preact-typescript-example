@@ -1,12 +1,13 @@
 import { h } from "preact";
-import { Link } from "preact-router/match";
+import Logo from '../../assets/logo.svg';
 import * as style from "./style.css";
-import logo from '../../assets/logo.svg';
 
 const Header: preact.FunctionalComponent = () => {
     return (
         <header class={style.header}>
-            <img src={logo} class={style.logo} />
+            <div class={style.logo}>
+                <Logo width={240} />
+            </div>
         </header>
     );
 };
