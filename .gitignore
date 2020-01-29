@@ -2,3 +2,5 @@ node_modules
 /build
 /*.log
 /.idea
+/e2e/cypress/.DS_Store
+

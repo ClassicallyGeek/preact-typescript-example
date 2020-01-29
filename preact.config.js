@@ -1,6 +1,7 @@
 import { resolve } from "path";
 
 export default function(config, env, helpers) {
+    console.log("config", config);
     // Switch css-loader for typings-for-css-modules-loader, which is a wrapper
     // that automatically generates .d.ts files for loaded CSS
     helpers.getLoadersByName(config, "css-loader").forEach(({ loader }) => {
@@ -20,6 +21,25 @@ export default function(config, env, helpers) {
         "src",
         "index"
     );
+    const urlLoader = helpers.getLoadersByName(config, "url-loader");
+    urlLoader.map(
+        entry =>
+            (entry.rule.test = /\.(woff2?|ttf|eot|jpe?g|png|gif|mp4|mov|ogg|webm)(\?.*)?$/i)
+    );
 
+    const fileLoader = helpers.getLoadersByName(config, "file-loader");
+    fileLoader.map(
+        entry =>
+            (entry.rule.test = /\.(woff2?|ttf|eot|jpe?g|png|gif|mp4|mov|ogg|webm)(\?.*)?$/i)
+    );
+
+    const rawLoader = helpers.getLoadersByName(config, "raw-loader");
+    rawLoader.map(entry => (entry.rule.test = /\.(xml|html|txt|md)$/));
+
+    config.resolve.modules.push(require.resolve("preact-svg-loader"));
+    config.module.rules.push({
+        test: /\.svg$/,
+        use: ["preact-svg-loader"]
+    });
     return config;
 }
